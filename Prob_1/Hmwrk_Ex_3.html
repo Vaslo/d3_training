@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<html>
+
+<body>
+
+    <div id="decoy-svg-container">
+    <svg id="decoy_viz" width="0" height="0"></svg>
+    </div>
+
+    <div id="svg-container">
+    <svg id="viz" width="720" height="405"></svg>
+    </div>
+
+<script>
+
+    var width = 720;
+    var height = 405;
+
+</script>
+
+<script>
+var data = 
+[
+    10,
+    5,
+    5,
+    8,
+    9,
+    3,
+    2
+]; 
+
+//var viz = d3.select("body").append("svg").attr("height","100%").attr("width","100%");
+//document.getElementById("svg-container").innerHTML = data;
+var rectangle = d3.select("#viz")
+        .selectAll("rect")
+        .data(data);
+    
+    rectangle.exit().remove();
+
+    rectangle.enter().append("rect").merge(rectangle)
+    .attr("tokenid",function(d,i){ return d*i*64;})
+    .attr("height",function(d,i){ return d*10;})
+    .attr("width","15")
+    .attr("fill","steelblue")
+    .attr("x",function(d,i){return 20*i; })
+    .attr("y",function(d,i){return ((height/2.0)-(5.0*d));});
+
+</script>
+
+</body>
+
+</html>
+
